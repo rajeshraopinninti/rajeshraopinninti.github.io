@@ -1,0 +1,153 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajesh | To-Do List</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #100b18;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .todo {
+            width: 380px;
+            background: #1c1429;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #9333ea;
+            box-shadow: 0 0 25px #6d28d9;
+        }
+
+        h2 {
+            color: #c084fc;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            display: flex;
+            gap: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #302440;
+            color: white;
+            outline: none;
+        }
+
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+            background: #9333ea;
+            color: white;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        li {
+            background: #302440;
+            color: white;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        li span {
+            cursor: pointer;
+            overflow-wrap: anywhere;
+        }
+
+        li.done span {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .delete {
+            background: #dc2626;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #c084fc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="todo">
+        <h2>My To-Do List</h2>
+
+        <div class="input-box">
+            <input type="text" id="task" placeholder="Enter your task">
+            <button onclick="addTask()">Add</button>
+        </div>
+
+        <ul id="taskList"></ul>
+
+        <a href="../../index.html" class="back">
+            ← Back to Portfolio
+        </a>
+    </div>
+
+    <script>
+        function addTask() {
+            const input = document.getElementById("task");
+            const task = input.value.trim();
+
+            if (task === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            const li = document.createElement("li");
+            const span = document.createElement("span");
+            const del = document.createElement("button");
+
+            span.textContent = task;
+            del.textContent = "Delete";
+            del.className = "delete";
+
+            span.onclick = () => li.classList.toggle("done");
+            del.onclick = () => li.remove();
+
+            li.append(span, del);
+            document.getElementById("taskList").appendChild(li);
+
+            input.value = "";
+        }
+    </script>
+
+</body>
+</html>
+```
